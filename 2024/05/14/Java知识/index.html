@@ -23,7 +23,7 @@
 <meta property="og:image" content="c:\Users\Administrator.DESKTOP-M7Q5Q81\AppData\Roaming\Typora\typora-user-images\image-20240513110821105.png">
 <meta property="og:image" content="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/jvm-37.png">
 <meta property="article:published_time" content="2024-05-14T04:11:13.000Z">
-<meta property="article:modified_time" content="2024-05-14T04:11:55.866Z">
+<meta property="article:modified_time" content="2024-05-14T04:55:56.221Z">
 <meta property="article:author" content="Rain Hu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-17.png">
@@ -122,6 +122,8 @@
 <p><code>ArithmeticException</code>（算术错误）</p>
 </li>
 </ul>
+<span id="more"></span>
+
 <h2 id="1-3-异常处理机制"><a href="#1-3-异常处理机制" class="headerlink" title="1.3 异常处理机制"></a>1.3 异常处理机制</h2><ul>
 <li>throws表明方法抛出异常，需要调用者来处理，如果不想处理就一直向外抛，最后会由jvm来处理；</li>
 <li>try-catch-finally：捕获别人抛出的异常，并进行处理：<ul>
@@ -492,7 +494,6 @@
 <img src="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/jvm-37.png" alt="逃逸" style="zoom:50%;" />
 
 <p>除此之外，如果<strong>对象还有可能被外部线程</strong>访问到，例如赋值给可以在其它线程中访问的实例变量，这种就被称为线程逃逸。</p>
-<span id="more"></span>
 
       
     </div>

@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>常用API | </title><meta name="author" content="Rain Hu"><meta name="copyright" content="Rain Hu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常见数据结构API 作为队列时offer()和poll()方法 在队尾增加&#x2F;在队首减少 peek()返回队首，此时与Queue接口一致 作为栈时push()和pop()均为在队首操作，与Stack接口一致 Deque也可使用offer&#x2F;poll&#x2F;peek + First &#x2F; Last 等操作 peekFirst()相当于peek() 123import ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用API">
+<meta property="og:url" content="http://example.com/2024/02/26/%E5%B8%B8%E7%94%A8API/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="常见数据结构API 作为队列时offer()和poll()方法 在队尾增加&#x2F;在队首减少 peek()返回队首，此时与Queue接口一致 作为栈时push()和pop()均为在队首操作，与Stack接口一致 Deque也可使用offer&#x2F;poll&#x2F;peek + First &#x2F; Last 等操作 peekFirst()相当于peek() 123import ja">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/spongebob.jpg">
+<meta property="article:published_time" content="2024-02-26T02:42:44.000Z">
+<meta property="article:modified_time" content="2024-06-06T02:46:05.694Z">
+<meta property="article:author" content="Rain Hu">
+<meta property="article:tag" content="Java基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/spongebob.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/02/26/%E5%B8%B8%E7%94%A8API/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '常用API',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-06 10:46:05'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/spongebob.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/miku.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title=""><span class="site-name"></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">常用API</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-26T02:42:44.000Z" title="发表于 2024-02-26 10:42:44">2024-02-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="常用API"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="常见数据结构API"><a href="#常见数据结构API" class="headerlink" title="常见数据结构API"></a>常见数据结构API</h1><ol>
+<li><p>作为队列时offer()和poll()方法 在队尾增加&#x2F;在队首减少 peek()返回队首，此时与Queue接口一致</p>
+<p>作为栈时push()和pop()均为在队首操作，与Stack接口一致</p>
+<p>Deque也可使用offer&#x2F;poll&#x2F;peek + First &#x2F; Last 等操作 peekFirst()相当于peek()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line">Deque&lt;Integer&gt; deque = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Integer&gt;();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优先队列内部由最小堆实现</p>
+<p>实现大顶堆可添加lambda表达式或者重写比较函数来实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line">PriorityQueue&lt;Integer&gt; q1 = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br><span class="line">PriorityQueue&lt;Integer&gt; q = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((o1, o2)-&gt;o2.compareTo(o1)); <span class="comment">// 大根堆，小根堆默认，不需要比较器</span></span><br><span class="line"><span class="comment">// 等价于Integer.compare(o2,o2)  等价于 o2-o1</span></span><br><span class="line"><span class="comment">// 也可能用于List列表数据结构</span></span><br><span class="line"><span class="comment">// 不能用于一维整型数组，String[] 二维都可以</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>List列表用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; reslist = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">List&lt;Integer&gt; item = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">item.add(<span class="number">0</span>);</span><br><span class="line">reslist.add(item); <span class="comment">// 实现二维列表更新</span></span><br><span class="line"><span class="comment">// resList.get(下标) 获取子数组</span></span><br><span class="line"><span class="comment">// 初始创建时二维数组长度为0，无法使用get()方法</span></span><br><span class="line">reslist.size()返回子列表个数</span><br></pre></td></tr></table></figure>
+
+<p>如果item改变，<code>item.add(0)</code>; reslist.add(item);</p>
+<p>此时reslist中两个元素为一样的，因为此时进行的是浅拷贝，只将地址进行了add，如果改变，前一个也会改变</p>
+<p><code>List可以直接System.out.println(List)</code></p>
+</li>
+<li><pre><code class="java">class Solution &#123;
+    // int max = -1;
+    // int index=0;
+    public TreeNode constructMaximumBinaryTree(int[] nums) &#123;
+        return buildTree(0,nums.length-1,nums);
+    &#125;
+    public TreeNode buildTree(int left, int right,int[] nums)&#123;
+        int max = -1;
+        int index=0;
+        if(left&gt;right) return null;
+        for(int i=left;i&lt;=right;i++)&#123;
+            if(nums[i]&gt;max)&#123;
+                max=nums[i];
+                index = i;&#125;
+            &#125;
+        TreeNode node = new TreeNode(max);
+        node.left = buildTree(left,index-1, nums);  // *8
+        node.right = buildTree(index+1,right, nums);
+        return node;
+    &#125;
+&#125;
+
+// 为何不能在函数外定义max和index？ 反正每次进入函数都会赋值
+// 进入函数并未初始化，node.left将index改变后传入right的index不再是本层的index，已经被前一行(*8)函数改变
+// 而所需要的结果是在一个buildTree内部index只被改变一次
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">5. JAVA Entry存放键值对，有getKey()和getValue()方法</span><br><span class="line"></span><br><span class="line">   map.entrySet() 可以讲Map转换为Set集合，内部元素为Map.Entry</span><br><span class="line"></span><br><span class="line">   .stream()用于产生流，可在一句话内进行遍历迭代</span><br><span class="line"></span><br><span class="line">   ```java</span><br><span class="line">   List&lt;Map.Entry&lt;Integer, Integer&gt;&gt; mapList = map.entrySet().stream()  // 转换为集合、流化</span><br><span class="line">   				.sorted((c1, c2) -&gt; c2.getValue().compareTo(c1.getValue()))  </span><br><span class="line">       			// 降序排列 x.copmareTo(y)返回x-y</span><br><span class="line">   				.collect(Collectors.toList()); // 转换为List集合</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><pre><code class="java">HashSet&lt;Integer&gt; hs = new HashSet&lt;Integer&gt;();
+// hs.contains(i) 查看是否包含元素
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. 根据身高重新排列</span><br><span class="line"></span><br><span class="line">   ```java</span><br><span class="line">   class Solution &#123;</span><br><span class="line">       public int[][] reconstructQueue(int[][] people) &#123;</span><br><span class="line">           Arrays.sort(people, (a, b) -&gt; &#123;</span><br><span class="line">               if (a[0] == b[0]) return a[1] - b[1];   // a - b 是升序排列，故在a[0] == b[0]的状况下，会根据k值升序排列</span><br><span class="line">               return b[0] - a[0];   //b - a 是降序排列，在a[0] != b[0]，的状况会根据h值降序排列</span><br><span class="line">           &#125;);</span><br><span class="line">   </span><br><span class="line">           LinkedList&lt;int[]&gt; que = new LinkedList&lt;&gt;();</span><br><span class="line">   </span><br><span class="line">           for (int[] p : people) &#123;</span><br><span class="line">               que.add(p[1],p);   // 列表的插入操作</span><br><span class="line">           &#125;</span><br><span class="line">   </span><br><span class="line">           return que.toArray(new int[people.length][]); // 注意此步toArray(new 数据类型eg int[0][0])</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   // 排序部分也可以写成</span><br><span class="line">           Arrays.sort(people, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">               @Override</span><br><span class="line">               public int compare(int[] o1, int[] o2) &#123;</span><br><span class="line">                   if(o2[0]!=o1[0]) return Integer.compare(o2[0], o1[0]); // 以第一列元素降序排序</span><br><span class="line">                   return Integer.compare(o1[1], o2[1]);&#125;</span><br><span class="line">           &#125;);</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>数组求和</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> Arrays.stream(nums).sum();</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>List进行排序、翻转</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; nums = <span class="keyword">new</span> <span class="title class_">ArrayList</span>(); </span><br><span class="line">nums.contains(x)  <span class="comment">// 查看是否包含x</span></span><br><span class="line">Collections.sort(nums); </span><br><span class="line">Collections.reverse(nums); </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组逆序转化为整型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num=<span class="number">0</span></span><br><span class="line"><span class="type">int</span>[] ls = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i : ls)&#123;</span><br><span class="line">	num=num*<span class="number">10</span>+i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 数组比较是否相等Arrays.equals()</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>整型List转为数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] ls = res.stream().mapToInt(Integer::intValue).toArray();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>StringBuilder用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">sb.append(<span class="number">8</span>).append(<span class="string">&quot;乘以&quot;</span>).append(<span class="number">6.6</span>).append(<span class="string">&#x27;=&#x27;</span>).append(<span class="literal">true</span>);</span><br><span class="line">sb.append(<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;!!!&quot;</span>));</span><br><span class="line">sb.reverse();  <span class="comment">//翻转</span></span><br><span class="line">sb.delete(<span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 删除</span></span><br><span class="line">sb.deleteCharAt()  <span class="comment">// 删除特定位置的字符</span></span><br><span class="line">String <span class="title function_">substring</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>; 根据索引，以字符串形式截取内部段。</span><br><span class="line">String <span class="title function_">toString</span><span class="params">()</span>;  <span class="comment">// 转化为string</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>String拆分为String列表，转换为整型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String[] strAr = str.split(<span class="string">&quot;_&quot;</span>);</span><br><span class="line">Integer.parseInt(str)</span><br><span class="line">(<span class="type">int</span>)c <span class="comment">//若是字符</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><pre><code class="java">int[] ls = new int[]&#123;1,2,3,4,5&#125;;
+int[] ls1 = Arrays.copyOfRange(ls, a1,a2); // 其中a1只要小于等于长度即可 若a1=5,a2=6,则补全为默认值[0]; 若a1=5,a2=5, 则为[];
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">15. HashMap使用，其查找插入等时间复杂度为O(1)</span><br><span class="line"></span><br><span class="line">    ```java</span><br><span class="line">    HashMap&lt;Integer, Integer&gt; hash = new HashMap&lt;&gt;();</span><br><span class="line">    hash.put(num,1+hash.getOrDefault(num,0));  // 即使已经存在也可替换掉</span><br><span class="line">    hashmap.containsKey(Object key)</span><br><span class="line">    hash.keySet()	// 返回 hashMap 中所有 key 组成的集合视图。</span><br><span class="line">    hash.values()	// 返回 hashMap 中存在的所有 value 值  可用于for each</span><br><span class="line">    hash.remove(key) // 删除键值对</span><br><span class="line">    hash.clear(); 删除所有键值对</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><pre><code class="java">// String排序
+// 只有String当作key才能使用containsKey()方法，数组名不行
+char[] t1 = strs[i].toCharArray();
+Arrays.sort(t1);
+String t2 = new String(t1);
+ if(!map.containsKey(t2))&#123;
+ &#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">17. 建立双端队列用LinkedList</span><br><span class="line"></span><br><span class="line">    ```java</span><br><span class="line">    Deque&lt;TreeNode&gt; temp = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    // 清除全部用removeall()</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>int类型转换为String</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer.toString();</span><br><span class="line">String.valueOf()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><pre><code class="java">// 可直接将字符数组转换为字符串数字
+Integer.parseInt(String.valueOf(chars));
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">20. ```java</span><br><span class="line">    // 直接将整数转化为列表</span><br><span class="line">    Arrays.asList(nums[i], nums[left], nums[right])</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Rain Hu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/02/26/%E5%B8%B8%E7%94%A8API/">http://example.com/2024/02/26/%E5%B8%B8%E7%94%A8API/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank"></a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a></div><div class="post_share"><div class="social-share" data-image="/image/spongebob.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1/" title="设计模式-1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">设计模式-1</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/23/JUC/" title="JUC"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JUC</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/23/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Java基础知识"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-23</div><div class="title">Java基础知识</div></div></a></div><div><a href="/2024/02/23/JUC/" title="JUC"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-23</div><div class="title">JUC</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/spongebob.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Rain Hu</div><div class="author-info__description">HUST</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rainhu22"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84API"><span class="toc-number">1.</span> <span class="toc-text">常见数据结构API</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2/" title="设计模式-2">设计模式-2</a><time datetime="2024-03-23T11:26:59.000Z" title="发表于 2024-03-23 19:26:59">2024-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/21/JVM/" title="JVM">JVM</a><time datetime="2024-03-21T07:35:22.000Z" title="发表于 2024-03-21 15:35:22">2024-03-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1/" title="设计模式-1">设计模式-1</a><time datetime="2024-03-18T12:17:59.000Z" title="发表于 2024-03-18 20:17:59">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/%E5%B8%B8%E7%94%A8API/" title="常用API">常用API</a><time datetime="2024-02-26T02:42:44.000Z" title="发表于 2024-02-26 10:42:44">2024-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/23/JUC/" title="JUC">JUC</a><time datetime="2024-02-23T11:48:08.000Z" title="发表于 2024-02-23 19:48:08">2024-02-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Rain Hu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
